@@ -21,7 +21,12 @@ $cuerpo .= "<strong>Message:</strong> ".$mensaje;
  
 // Esta es una pequena validación, que solo envie el correo si todas las variables tiene algo de contenido:
 if($nombre != '' && $email != '' && $mensaje != ''){
-    mail($dest,$asunto,$cuerpo,$headers); //ENVIAR!
-    echo 'Mensaje enviado! En breve nos estaremos comunicando contigo';
+    $response = mail($dest,$asunto,$cuerpo,$headers); //ENVIAR!
+    if ($response) {
+    	echo 'Mensaje enviado! En breve nos estaremos comunicando contigo';	
+    } else {
+    	echo error_get_last();
+    }
+    
 }
 ?>
